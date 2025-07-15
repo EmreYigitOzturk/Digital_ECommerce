@@ -7,6 +7,6 @@ namespace Digital_Domain_Layer.Entities
 
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
-        public virtual ICollection<SubCategory> SubCategories { get; set; }
+        public virtual ICollection<SubCategory>? SubCategories { get; set; }
     }
 }

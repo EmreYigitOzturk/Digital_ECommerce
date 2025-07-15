@@ -3,6 +3,7 @@ using System;
 using Digital_Persistence_Layer.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Digital_Persistence_Layer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250706200747_EmailFieldRemove")]
+    partial class EmailFieldRemove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace Digital_Persistence_Layer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Carts", (string)null);
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.Checkout", b =>
@@ -87,7 +90,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Checkouts", (string)null);
+                    b.ToTable("Checkouts");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.MainCategory", b =>
@@ -109,7 +112,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MainCategories", (string)null);
+                    b.ToTable("MainCategories");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.Order", b =>
@@ -134,7 +137,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.Product", b =>
@@ -176,7 +179,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasIndex("SubCategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.ProductImage", b =>
@@ -199,7 +202,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.SubCategory", b =>
@@ -226,7 +229,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasIndex("MainCategoryId");
 
-                    b.ToTable("SubCategories", (string)null);
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -446,7 +449,7 @@ namespace Digital_Persistence_Layer.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("OrderProduct", (string)null);
+                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("Digital_Domain_Layer.Entities.User", b =>

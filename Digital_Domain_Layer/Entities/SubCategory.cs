@@ -17,6 +17,6 @@ namespace Digital_Domain_Layer.Entities
         public Guid MainCategoryId { get; set; }
         [JsonIgnore]
         public virtual MainCategory MainCategory { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

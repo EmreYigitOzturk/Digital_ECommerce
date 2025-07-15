@@ -79,6 +79,16 @@ namespace Digital_Persistence_Layer.Repositories.Concrete
             return null;
         }
 
+        public async Task<bool> IsExist(Expression<Func<T, bool>> filter = null)
+        {
+            IQueryable<T> query = Table.AsQueryable();
+            if (filter is not null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.AnyAsync();
+        }
+
         public async Task<PagedResult<T>> GetPagedResult(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int pageNumber = 1, int pageSize = 10, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = Table.AsQueryable();
@@ -110,6 +120,18 @@ namespace Digital_Persistence_Layer.Repositories.Concrete
 
         }
 
+        public async Task<IEnumerable<T>> GetWithIncludeProperties(params Expression<Func<T, object>>[] includeProperties)
+        {
+            var query = Table.AsQueryable();
+            if (includeProperties.Length > 0)
+            {
+                foreach (var item in includeProperties)
+                {
+                    query = query.Include(item);
 
+                }
+            }
+            return query.AsEnumerable();
+        }
     }
 }
